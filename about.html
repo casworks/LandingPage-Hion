@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang — HiON</title>
+  <meta name="description" content="Cerita di balik HiON, nilai yang kami pegang, dan roadmap menuju launch." />
+  <link rel="canonical" href="https://hion.app/about" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://hion.app/about" />
+  <meta property="og:title"       content="Tentang HiON — Cerita, Nilai &amp; Roadmap" />
+  <meta property="og:description" content="Cerita di balik HiON, nilai yang kami pegang, dan roadmap dari Q1 2026 menuju public launch Q4 2026." />
+  <meta property="og:image"       content="https://hion.app/assets/images/og.png" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Tentang HiON — Cerita, Nilai &amp; Roadmap" />
+  <meta name="twitter:description" content="Cerita di balik HiON, nilai yang kami pegang, dan roadmap dari Q1 2026 menuju public launch Q4 2026." />
+  <meta name="twitter:image"       content="https://hion.app/assets/images/og.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .page-hero { padding: 72px 0; border-bottom: 1px solid var(--border); }
+    .page-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem); margin-top: 10px;
+      max-width: 680px; line-height: 1.1;
+    }
+    .page-hero p {
+      color: var(--muted); font-size: 0.95rem; line-height: 1.8;
+      max-width: 600px; margin-top: 16px;
+    }
+    .page-hero p + p { margin-top: 10px; }
+
+    /* values */
+    .values { padding: 88px 0; border-bottom: 1px solid var(--border); }
+    .values h2 { font-size: clamp(1.5rem,3vw,2rem); margin-bottom: 36px; }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
+    }
+    .val-card { background: var(--surface); padding: 32px 26px; }
+    .val-card .val-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem; font-weight: 800;
+      color: var(--border2); margin-bottom: 14px;
+    }
+    .val-card .val-icon { color: var(--muted); margin-bottom: 12px; }
+    .val-card .val-icon svg { width: 22px; height: 22px; }
+    .val-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+    .val-card p  { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+
+    /* how it works */
+    .how { padding: 88px 0; border-bottom: 1px solid var(--border); }
+    .how h2 { font-size: clamp(1.5rem,3vw,2rem); margin-bottom: 48px; }
+    .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .how-step { position: relative; }
+    .how-step .step-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem; font-weight: 700; color: var(--muted2);
+      letter-spacing: 0.08em; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .step-line {
+      flex: 1; height: 1px; background: var(--border2);
+    }
+    .how-step .step-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px; border: 1px solid var(--border2);
+    }
+    .how-step .step-icon svg { width: 18px; height: 18px; color: var(--muted); }
+    .how-step h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+    .how-step p  { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    /* roadmap */
+    .roadmap { padding: 88px 0; border-bottom: 1px solid var(--border); }
+    .roadmap h2 { font-size: clamp(1.5rem,3vw,2rem); margin-bottom: 40px; }
+    .tl { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: flex; gap: 32px; padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-date {
+      width: 90px; flex-shrink: 0;
+      font-size: 0.75rem; color: var(--muted); font-weight: 500; padding-top: 3px;
+    }
+    .tl-body {}
+    .tl-body h4 { font-size: 0.9rem; font-weight: 600; margin: 6px 0 4px; }
+    .tl-body p  { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* faq */
+    .faq { padding: 88px 0; border-bottom: 1px solid var(--border); }
+    .faq h2 { font-size: clamp(1.5rem,3vw,2rem); margin-bottom: 36px; }
+    .faq-list { display: flex; flex-direction: column; gap: 0; max-width: 720px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border); padding: 0;
+      overflow: hidden;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 0; cursor: pointer; gap: 16px;
+      background: none; border: none; width: 100%; text-align: left;
+      font-family: inherit; color: var(--text); font-size: 0.9rem; font-weight: 500;
+    }
+    .faq-q svg { width: 16px; height: 16px; color: var(--muted); flex-shrink: 0; transition: transform 0.2s; }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); }
+    .faq-a {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 16px; }
+
+    /* bottom cta */
+    .bottom-cta {
+      padding: 88px 0; text-align: center;
+      background: var(--surface); border-top: 1px solid var(--border);
+    }
+    .bottom-cta h2 { font-size: clamp(1.8rem,4vw,2.6rem); margin-bottom: 12px; }
+    .bottom-cta p { color: var(--muted); margin-bottom: 28px; }
+
+    @media (max-width: 860px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 480px) {
+      .how-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="nav-item" href="index.html">Home</a>
+      <a class="nav-item" href="features.html">Fitur</a>
+      <a class="nav-item active" href="about.html">Tentang</a>
+    </div>
+    <a class="nav-logo" href="index.html">HiON</a>
+    <div class="nav-right">
+      <span class="live-badge"><span class="live-dot"></span>Coming Soon</span>
+      <a class="nav-cta" href="waitlist.html">
+        Early Access <i data-lucide="arrow-right" style="width:13px;height:13px"></i>
+      </a>
+      <button class="nav-menu-btn" id="menu-btn" aria-label="Menu">
+        <i data-lucide="menu" style="width:20px;height:20px"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html"><i data-lucide="home" style="width:16px;height:16px"></i> Home</a>
+  <a href="features.html"><i data-lucide="layout-grid" style="width:16px;height:16px"></i> Fitur</a>
+  <a href="about.html"><i data-lucide="info" style="width:16px;height:16px"></i> Tentang</a>
+  <a href="waitlist.html"><i data-lucide="mail" style="width:16px;height:16px"></i> Early Access</a>
+</div>
+
+<div style="padding-top: var(--nav-h)">
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Tentang HiON</p>
+    <h1 class="display">Dibuat karena kami juga pernah kewalahan mengatur hidup</h1>
+    <p>HiON lahir dari frustrasi nyata — terlalu banyak app, terlalu sedikit koneksi. Finance di satu app, habit di app lain, kesehatan mental di chat random. Semuanya terpisah, tidak ada yang paham konteks hidupmu secara utuh.</p>
+    <p>Kami percaya hidup yang baik bukan soal disiplin sempurna — tapi soal memiliki sistem yang membantu kamu tetap sadar, bertumbuh, dan menjadi dirimu sendiri.</p>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="container">
+    <h2 class="heading reveal">Nilai yang kami pegang</h2>
+    <div class="values-grid reveal">
+      <div class="val-card">
+        <div class="val-num">01</div>
+        <div class="val-icon"><i data-lucide="shield"></i></div>
+        <h3>Privacy by design</h3>
+        <p>Privasi bukan fitur tambahan. Setiap keputusan arsitektur dimulai dari pertanyaan: "Apakah ini aman untuk pengguna?"</p>
+      </div>
+      <div class="val-card">
+        <div class="val-num">02</div>
+        <div class="val-icon"><i data-lucide="brain"></i></div>
+        <h3>Konteks, bukan data mentah</h3>
+        <p>Kamu bukan kumpulan angka. HiON memahami pola dan konteks hidupmu, bukan sekadar menyimpan log aktivitas.</p>
+      </div>
+      <div class="val-card">
+        <div class="val-num">03</div>
+        <div class="val-icon"><i data-lucide="users"></i></div>
+        <h3>Human-first AI</h3>
+        <p>AI di HiON adalah alat, bukan otoritas. Kamu yang memutuskan, kami menyediakan insight terbaik untuk mendukungmu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="container">
+    <h2 class="heading reveal">Bagaimana HiON bekerja</h2>
+    <div class="how-steps reveal">
+      <div class="how-step">
+        <div class="step-num">01 <span class="step-line"></span></div>
+        <div class="step-icon"><i data-lucide="user-plus"></i></div>
+        <h4>Buat akun & setup profil</h4>
+        <p>Ceritakan sedikit tentang dirimu — gaya hidup, prioritas, dan hal yang ingin kamu perbaiki.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">02 <span class="step-line"></span></div>
+        <div class="step-icon"><i data-lucide="settings-2"></i></div>
+        <h4>Aktifkan modul yang kamu butuhkan</h4>
+        <p>Mulai dari Finance atau Habit — pilih modul sesuai prioritasmu. Bisa aktifkan semua kapan saja.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">03 <span class="step-line"></span></div>
+        <div class="step-icon"><i data-lucide="zap"></i></div>
+        <h4>HiON mulai belajar polamu</h4>
+        <p>Semakin sering digunakan, semakin cerdas insight yang diberikan. AI belajar dari konteks hidupmu.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">04</div>
+        <div class="step-icon"><i data-lucide="trending-up"></i></div>
+        <h4>Lihat hidupmu berkembang</h4>
+        <p>Dashboard terpadu memperlihatkan progress dari semua aspek hidupmu dalam satu tampilan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap" id="roadmap">
+  <div class="container">
+    <h2 class="heading reveal">Roadmap menuju launch</h2>
+    <div class="tl reveal">
+      <div class="tl-item">
+        <div class="tl-date">Q1 2026</div>
+        <div class="tl-body">
+          <span class="badge badge-green">
+            <i data-lucide="check" style="width:10px;height:10px"></i> Selesai
+          </span>
+          <h4>Core architecture & design system</h4>
+          <p>Fondasi app, design system, database schema, dan autentikasi selesai. Internal testing dimulai.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Q2 2026</div>
+        <div class="tl-body">
+          <span class="badge badge-green">
+            <i data-lucide="check" style="width:10px;height:10px"></i> Selesai
+          </span>
+          <h4>Finance & Habit module</h4>
+          <p>Dua modul utama selesai. Beta testing internal dengan 50 pengguna pertama.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Q3 2026</div>
+        <div class="tl-body">
+          <span class="badge badge-yellow">
+            <i data-lucide="arrow-right" style="width:10px;height:10px"></i> Sedang berjalan
+          </span>
+          <h4>Life Inventory + Lumi beta</h4>
+          <p>Dua modul terakhir dalam pengembangan. Closed beta untuk pengguna waitlist pertama dibuka.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Q4 2026</div>
+        <div class="tl-body">
+          <span class="badge badge-muted">
+            <i data-lucide="clock" style="width:10px;height:10px"></i> Planned
+          </span>
+          <h4>Public launch</h4>
+          <p>Rilis untuk umum. Founding member mendapat harga spesial yang terkunci seumur hidup.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2027</div>
+        <div class="tl-body">
+          <span class="badge badge-muted">
+            <i data-lucide="clock" style="width:10px;height:10px"></i> Planned
+          </span>
+          <h4>Mobile app & integrations</h4>
+          <p>iOS & Android native app. Integrasi dengan bank lokal, wearables, dan kalender.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <h2 class="heading reveal">Pertanyaan yang sering ditanyakan</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Apakah HiON gratis?
+          <i data-lucide="plus"></i>
+        </button>
+        <div class="faq-a">HiON akan tersedia dalam model freemium. Fitur dasar gratis, fitur lanjutan (AI insights, Lumi penuh, export data) dalam paket berbayar. Founding member dari waitlist mendapat harga spesial yang terkunci seumur hidup.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Apakah data saya aman?
+          <i data-lucide="plus"></i>
+        </button>
+        <div class="faq-a">Ya. Semua data dienkripsi end-to-end. Kami tidak menjual data ke pihak ketiga manapun. Kamu bisa export atau hapus semua datamu kapan saja. Tersedia juga mode local-first agar data tidak meninggalkan perangkatmu.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Lumi apakah bisa menggantikan terapis?
+          <i data-lucide="plus"></i>
+        </button>
+        <div class="faq-a">Tidak. Lumi adalah AI mental companion, bukan pengganti profesional. Lumi hadir untuk menemani, mendengarkan, dan membantu kamu refleksi. Untuk masalah serius, kami selalu menyarankan berkonsultasi dengan profesional.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Kapan HiON bisa dipakai?
+          <i data-lucide="plus"></i>
+        </button>
+        <div class="faq-a">Public launch dijadwalkan di Q4 2026. Saat ini kami membuka waitlist — pengguna terdaftar akan mendapat akses lebih awal sebelum rilis umum.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Platform apa yang didukung?
+          <i data-lucide="plus"></i>
+        </button>
+        <div class="faq-a">Saat launch, HiON tersedia sebagai web app yang responsif di semua perangkat. Mobile app native untuk iOS & Android direncanakan pada 2027.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Bisakah saya pakai hanya satu modul?
+          <i data-lucide="plus"></i>
+        </button>
+        <div class="faq-a">Tentu saja. Kamu bisa aktifkan hanya Finance, hanya Habit, atau kombinasi apapun. Modul bekerja secara independen tapi juga saling memperkaya saat dipakai bersamaan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="bottom-cta">
+  <div class="container">
+    <div class="container-sm reveal">
+      <h2 class="display">Ikut perjalanan ini dari awal</h2>
+      <p>Daftar waitlist dan jadi bagian dari komunitas yang membantu membentuk HiON menjadi produk terbaik untukmu.</p>
+      <a class="btn btn-primary" href="waitlist.html" style="font-size:0.95rem;padding:13px 28px">
+        Daftar Waitlist
+        <i data-lucide="arrow-right" style="width:15px;height:15px"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /padding-top -->
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="fb-logo" href="index.html">HiON</a>
+        <p>Personal AI ecosystem yang selalu ON — mengenal hidupmu, membantu kamu berkembang, dan menjaga privasimu.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+          <a href="#" aria-label="Email"><i data-lucide="mail"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Produk</h4>
+        <ul>
+          <li><a href="features.html"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Fitur</a></li>
+          <li><a href="about.html#roadmap"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Roadmap</a></li>
+          <li><a href="waitlist.html"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Early Access</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Changelog</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Harga</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Perusahaan</h4>
+        <ul>
+          <li><a href="about.html"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Tentang Kami</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Blog</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Karir</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Hubungi Kami</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Kebijakan Privasi</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Syarat & Ketentuan</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Cookie Policy</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-newsletter">
+      <div class="fn-text">
+        <h4>Tetap update perkembangan HiON</h4>
+        <p>Dapatkan info terbaru langsung ke email kamu. Tidak ada spam.</p>
+      </div>
+      <form class="fn-form" id="fn-form">
+        <input type="email" placeholder="email@kamu.com" required />
+        <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+      </form>
+    </div>
+    <div class="footer-bottom">
+      <span class="fb-copy">© 2026 HiON · Dibuat dengan ♥ di Indonesia</span>
+      <div class="fb-links">
+        <a href="#">Privasi</a>
+        <a href="#">Syarat</a>
+        <a href="#">Cookie</a>
+      </div>
+      <span class="fb-status"><span class="fb-status-dot"></span> All systems operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+    lucide.createIcons();
+  }
+</script>
+</body>
+</html>

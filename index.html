@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>HiON — Personal AI Ecosystem untuk Hidup yang Lebih ON</title>
+  <meta name="description" content="HiON adalah ekosistem AI personal yang mengelola keuangan, kebiasaan, inventaris rumah, dan kesehatan mental kamu dalam satu platform privat." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://hion.app/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://hion.app/" />
+  <meta property="og:title"       content="HiON — Human Intelligence ON" />
+  <meta property="og:description" content="Ekosistem AI personal untuk keuangan, kebiasaan, inventaris rumah, dan kesehatan mental. Semua terhubung. Semuanya milikmu." />
+  <meta property="og:image"       content="https://hion.app/assets/images/og.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="HiON — Human Intelligence ON" />
+  <meta name="twitter:description" content="Ekosistem AI personal untuk keuangan, kebiasaan, inventaris rumah, dan kesehatan mental." />
+  <meta name="twitter:image"       content="https://hion.app/assets/images/og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <style>
+    .hero {
+      padding: 96px 24px 72px;
+      text-align: center;
+      max-width: 860px; margin: 0 auto;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border2); border-radius: 100px;
+      padding: 5px 13px; margin-bottom: 32px;
+      font-size: 0.75rem; font-weight: 500; color: var(--muted);
+    }
+    .hero h1 { font-size: clamp(2.8rem, 7vw, 5.2rem); margin-bottom: 22px; }
+    .hero h1 em { font-style: normal; color: var(--muted); }
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.12rem); color: var(--muted);
+      line-height: 1.8; max-width: 540px; margin: 0 auto 40px;
+    }
+    .hero-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+    .preview-wrap {
+      margin: 60px auto 0; max-width: 920px;
+      border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
+    }
+    .preview-bar {
+      background: var(--card); border-bottom: 1px solid var(--border);
+      padding: 11px 18px; display: flex; align-items: center; gap: 7px;
+    }
+    .preview-bar .wdot { width: 9px; height: 9px; border-radius: 50%; }
+    .preview-nav-mock {
+      margin: 0 auto; display: flex; gap: 28px;
+      font-size: 0.74rem; color: var(--muted); align-items: center;
+    }
+    .logo-pill {
+      background: var(--bg); border: 1px solid var(--border2);
+      padding: 3px 14px; border-radius: 100px; color: var(--text);
+      font-weight: 700; font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem;
+    }
+    .preview-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+    }
+    .preview-cell { background: var(--surface); padding: 18px; }
+    .pc-label {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.68rem; color: var(--muted); margin-bottom: 9px; font-weight: 500;
+    }
+    .pc-label svg { width: 11px; height: 11px; }
+    .pc-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; }
+    .pc-sub { font-size: 0.68rem; color: var(--muted); margin-top: 3px; }
+    .pc-bar { height: 2px; background: var(--border2); border-radius: 1px; margin-top: 11px; }
+    .pc-fill { height: 100%; border-radius: 1px; }
+
+    .proof-strip { padding: 32px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .proof-strip .ps-label { font-size: 0.7rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.1em; text-align: center; margin-bottom: 16px; }
+    .proof-items { display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; }
+    .proof-items .pi {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.78rem; color: var(--muted);
+      background: var(--card); border: 1px solid var(--border);
+      padding: 6px 12px; border-radius: 7px;
+    }
+    .proof-items .pi svg { width: 12px; height: 12px; }
+
+    .overview { padding: 80px 0; }
+    .ov-cards {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
+    }
+    .ov-card {
+      background: var(--surface); padding: 30px 26px;
+      transition: background 0.18s; text-decoration: none; display: block;
+    }
+    .ov-card:hover { background: var(--card); }
+    .ov-module-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    }
+    .ov-module-icon svg { width: 17px; height: 17px; }
+    .ov-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+    .ov-card p  { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+    .ov-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.76rem; font-weight: 600; margin-top: 14px;
+      color: var(--muted2); transition: color 0.18s;
+    }
+    .ov-link svg { width: 12px; height: 12px; }
+    .ov-card:hover .ov-link { color: var(--text); }
+
+    .stats { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-item { padding: 36px 24px; border-right: 1px solid var(--border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-val { font-family: 'Space Grotesk', sans-serif; font-size: 2.1rem; font-weight: 800; line-height: 1; margin-bottom: 5px; }
+    .stat-label { font-size: 0.78rem; color: var(--muted); }
+
+    .testi { padding: 80px 0; border-top: 1px solid var(--border); }
+    .testi h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin-bottom: 36px; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .testi-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .testi-stars { display: flex; gap: 2px; margin-bottom: 10px; color: var(--yellow); }
+    .testi-stars svg { width: 12px; height: 12px; }
+    .testi-text { font-size: 0.84rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .testi-author { display: flex; align-items: center; gap: 9px; }
+    .testi-avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; flex-shrink: 0; }
+    .testi-name { font-size: 0.78rem; font-weight: 600; }
+    .testi-role { font-size: 0.7rem; color: var(--muted); }
+
+    .cta-strip { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; }
+    .cta-strip h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); margin-bottom: 10px; }
+    .cta-strip p { color: var(--muted); margin-bottom: 28px; font-size: 0.9rem; }
+    .quick-form { display: flex; gap: 8px; max-width: 380px; margin: 0 auto 10px; }
+    .quick-form input {
+      flex: 1; background: var(--card); border: 1px solid var(--border2);
+      color: var(--text); padding: 10px 13px; border-radius: 8px;
+      font-size: 0.875rem; outline: none; font-family: inherit; transition: border-color 0.18s;
+    }
+    .quick-form input:focus { border-color: var(--muted); }
+    .quick-form input::placeholder { color: var(--muted2); }
+    .form-note { font-size: 0.7rem; color: var(--muted2); }
+
+    @media (max-width: 860px) {
+      .preview-grid { grid-template-columns: repeat(2, 1fr); }
+      .ov-cards { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item { border-bottom: 1px solid var(--border); }
+      .stat-item:last-child, .stat-item:nth-last-child(2) { border-bottom: none; }
+      .testi-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .hero { padding: 72px 16px 48px; }
+      .quick-form { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="nav-item active" href="index.html">Home</a>
+      <a class="nav-item" href="features.html">Fitur</a>
+      <a class="nav-item" href="about.html">Tentang</a>
+    </div>
+    <a class="nav-logo" href="index.html">HiON</a>
+    <div class="nav-right">
+      <span class="live-badge"><span class="live-dot"></span>Coming Soon</span>
+      <a class="nav-cta" href="waitlist.html">
+        Early Access <i data-lucide="arrow-right" style="width:13px;height:13px"></i>
+      </a>
+      <button class="nav-menu-btn" id="menu-btn" aria-label="Buka menu">
+        <i data-lucide="menu" style="width:20px;height:20px"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html"><i data-lucide="home" style="width:16px;height:16px"></i> Home</a>
+  <a href="features.html"><i data-lucide="layout-grid" style="width:16px;height:16px"></i> Fitur</a>
+  <a href="about.html"><i data-lucide="info" style="width:16px;height:16px"></i> Tentang</a>
+  <a href="waitlist.html"><i data-lucide="mail" style="width:16px;height:16px"></i> Early Access</a>
+</div>
+
+<main style="padding-top:var(--nav-h)">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <span class="live-dot"></span>
+      Dalam pengembangan · Segera hadir
+    </div>
+    <h1 class="display">Human Intelligence<br /><em>always</em> ON</h1>
+    <p class="hero-desc">
+      Satu ekosistem AI personal untuk keuangan, kebiasaan, inventaris rumah, dan kesehatan mental. Terhubung. Privat. Milikmu.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="waitlist.html">
+        Daftar Early Access
+        <i data-lucide="arrow-right" style="width:15px;height:15px"></i>
+      </a>
+      <a class="btn btn-outline" href="features.html">
+        <i data-lucide="layout-grid" style="width:15px;height:15px"></i>
+        Lihat Fitur
+      </a>
+    </div>
+
+    <div class="preview-wrap reveal">
+      <div class="preview-bar">
+        <span class="wdot" style="background:#2a2a2a"></span>
+        <span class="wdot" style="background:#2a2a2a"></span>
+        <span class="wdot" style="background:#2a2a2a"></span>
+        <div class="preview-nav-mock">
+          <span>Dashboard</span><span>Finance</span>
+          <span class="logo-pill">HiON</span>
+          <span>Life</span><span>Calendar</span>
+        </div>
+      </div>
+      <div class="preview-grid">
+        <div class="preview-cell">
+          <div class="pc-label"><i data-lucide="wallet" style="color:var(--green)"></i> Net Balance</div>
+          <div class="pc-value" style="color:var(--green)">Rp 4,2jt</div>
+          <div class="pc-sub">↑ 12% bulan ini</div>
+          <div class="pc-bar"><div class="pc-fill" style="width:62%;background:var(--green);opacity:0.5"></div></div>
+        </div>
+        <div class="preview-cell">
+          <div class="pc-label"><i data-lucide="flame" style="color:var(--purple)"></i> Habit Streak</div>
+          <div class="pc-value" style="color:var(--purple)">14 hari</div>
+          <div class="pc-sub">Olahraga konsisten</div>
+          <div class="pc-bar"><div class="pc-fill" style="width:78%;background:var(--purple);opacity:0.6"></div></div>
+        </div>
+        <div class="preview-cell">
+          <div class="pc-label"><i data-lucide="package" style="color:var(--cyan)"></i> Restock</div>
+          <div class="pc-value" style="color:var(--cyan)">3 item</div>
+          <div class="pc-sub">Perlu dibeli minggu ini</div>
+          <div class="pc-bar"><div class="pc-fill" style="width:40%;background:var(--cyan);opacity:0.5"></div></div>
+        </div>
+        <div class="preview-cell">
+          <div class="pc-label"><i data-lucide="message-circle" style="color:var(--pink)"></i> Lumi · Mood</div>
+          <div class="pc-value" style="color:var(--pink)">Tenang</div>
+          <div class="pc-sub">Jurnal tersedia</div>
+          <div class="pc-bar"><div class="pc-fill" style="width:55%;background:var(--pink);opacity:0.5"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <div class="proof-strip">
+    <div class="container">
+      <p class="ps-label">Dirancang untuk</p>
+      <div class="proof-items">
+        <span class="pi"><i data-lucide="graduation-cap"></i> Fresh Graduates</span>
+        <span class="pi"><i data-lucide="briefcase"></i> Working Adults</span>
+        <span class="pi"><i data-lucide="laptop"></i> Freelancers</span>
+        <span class="pi"><i data-lucide="heart"></i> Siapapun yang ingin hidup lebih tertata</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODUL OVERVIEW -->
+  <section class="overview">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="eyebrow">Ekosistem HiON</p>
+        <h2 class="heading">Empat modul. Satu kehidupan yang tertata.</h2>
+        <p>Dari dompet hingga pikiran — semua aspek hidupmu terhubung dalam satu platform yang benar-benar personal.</p>
+      </div>
+      <div class="ov-cards reveal">
+        <a class="ov-card" href="features.html#finance">
+          <div class="ov-module-icon ib-green"><i data-lucide="wallet"></i></div>
+          <h3>Finance</h3>
+          <p>Pemasukan, pengeluaran, goals tabungan, dan hutang. AI insight bulanan otomatis.</p>
+          <span class="ov-link">Detail <i data-lucide="arrow-right"></i></span>
+        </a>
+        <a class="ov-card" href="features.html#habit">
+          <div class="ov-module-icon ib-purple"><i data-lucide="activity"></i></div>
+          <h3>Habit</h3>
+          <p>Bangun kebiasaan baik, kenali pola buruk. Olahraga, tidur, makan, siklus mens, hingga manajemen malas.</p>
+          <span class="ov-link">Detail <i data-lucide="arrow-right"></i></span>
+        </a>
+        <a class="ov-card" href="features.html#inventory">
+          <div class="ov-module-icon ib-cyan"><i data-lucide="package"></i></div>
+          <h3>Life Inventory</h3>
+          <p>Pengingat restock barang dan jadwal kebersihan rumah agar tidak ada yang terlewat.</p>
+          <span class="ov-link">Detail <i data-lucide="arrow-right"></i></span>
+        </a>
+        <a class="ov-card" href="features.html#lumi">
+          <div class="ov-module-icon ib-pink"><i data-lucide="message-circle"></i></div>
+          <h3>Lumi · Mental Companion</h3>
+          <p>AI teman bicara yang merangkum percakapanmu jadi jurnal mingguan dan badge mood otomatis.</p>
+          <span class="ov-link">Detail <i data-lucide="arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid reveal">
+        <div class="stat-item">
+          <div class="stat-val">4</div>
+          <div class="stat-label">Modul terintegrasi</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">1</div>
+          <div class="stat-label">Dashboard terpadu</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">100%</div>
+          <div class="stat-label">Data milik kamu</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">0</div>
+          <div class="stat-label">Iklan. Selamanya.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi">
+    <div class="container">
+      <h2 class="heading reveal">Kata pengguna beta</h2>
+      <div class="testi-grid reveal">
+        <div class="testi-card">
+          <div class="testi-stars">
+            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+          </div>
+          <p class="testi-text">"Dulu pakai 4 app berbeda. Sekarang cukup HiON — keuangan dan kebiasaan tersambung langsung."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:rgba(74,222,128,0.12);color:var(--green)">AR</div>
+            <div>
+              <div class="testi-name">A.R. — Software Engineer</div>
+              <div class="testi-role">Beta tester, Jakarta</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+          </div>
+          <p class="testi-text">"Lumi beda dari chatbot biasa. Resume jurnal mingguannya bikin aku lebih sadar sama pola emosiku sendiri."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:rgba(244,114,182,0.12);color:var(--pink)">DM</div>
+            <div>
+              <div class="testi-name">D.M. — Content Creator</div>
+              <div class="testi-role">Beta tester, Bandung</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star" style="opacity:0.3"></i>
+          </div>
+          <p class="testi-text">"Fitur Life Inventory yang paling bikin kaget. Pengingat restock sabun ternyata ngurangin mental load lumayan banyak."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:rgba(34,211,238,0.12);color:var(--cyan)">FR</div>
+            <div>
+              <div class="testi-name">F.R. — Freelancer</div>
+              <div class="testi-role">Beta tester, Surabaya</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-strip">
+    <div class="container">
+      <div class="container-sm reveal">
+        <h2 class="display">Siap hidup lebih ON?</h2>
+        <p>Daftar sekarang dan dapatkan early access, harga founding member, serta feedback privilege.</p>
+        <form class="quick-form" id="quick-form">
+          <input type="email" placeholder="email@kamu.com" required aria-label="Alamat email" />
+          <button type="submit" class="btn btn-primary">Daftar →</button>
+        </form>
+        <p class="form-note">Tidak ada spam · Unsubscribe kapan saja</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="fb-logo" href="index.html">HiON</a>
+        <p>Personal AI ecosystem yang selalu ON — mengenal hidupmu, membantu kamu berkembang, dan menjaga privasimu.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter / X"><i data-lucide="twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+          <a href="#" aria-label="Email"><i data-lucide="mail"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Produk</h4>
+        <ul>
+          <li><a href="features.html"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Fitur</a></li>
+          <li><a href="about.html#roadmap"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Roadmap</a></li>
+          <li><a href="waitlist.html"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Early Access</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Changelog</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Harga</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Perusahaan</h4>
+        <ul>
+          <li><a href="about.html"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Tentang</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Blog</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Karir</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Kontak</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Kebijakan Privasi</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Syarat & Ketentuan</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Cookie Policy</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:11px;height:11px"></i> Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-newsletter">
+      <div class="fn-text">
+        <h4>Update perkembangan HiON</h4>
+        <p>Info terbaru langsung ke inbox kamu. Tidak ada spam.</p>
+      </div>
+      <form class="fn-form" id="fn-form">
+        <input type="email" placeholder="email@kamu.com" required aria-label="Email newsletter" />
+        <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+      </form>
+    </div>
+    <div class="footer-bottom">
+      <span class="fb-copy">© 2026 HiON · Dibuat dengan ♥ di Indonesia</span>
+      <div class="fb-links">
+        <a href="#">Privasi</a><a href="#">Syarat</a><a href="#">Cookie</a>
+      </div>
+      <span class="fb-status"><span class="fb-status-dot"></span> All systems operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

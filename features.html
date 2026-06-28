@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitur — HiON</title>
+  <meta name="description" content="Empat modul HiON: Finance, Habit, Life Inventory, dan Lumi mental companion — terhubung dalam satu ekosistem." />
+  <link rel="canonical" href="https://hion.app/features" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://hion.app/features" />
+  <meta property="og:title"       content="Fitur HiON — Finance, Habit, Life Inventory &amp; Lumi" />
+  <meta property="og:description" content="Eksplorasi empat modul HiON: manajemen keuangan, habit tracker, life inventory, dan Lumi mental companion AI." />
+  <meta property="og:image"       content="https://hion.app/assets/images/og.png" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Fitur HiON — Finance, Habit, Life Inventory &amp; Lumi" />
+  <meta name="twitter:description" content="Eksplorasi empat modul HiON: manajemen keuangan, habit tracker, life inventory, dan Lumi mental companion AI." />
+  <meta name="twitter:image"       content="https://hion.app/assets/images/og.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* page header */
+    .page-hero {
+      padding: 72px 0 56px; border-bottom: 1px solid var(--border);
+    }
+    .page-hero h1 { font-size: clamp(2rem, 4vw, 3rem); margin-top: 10px; max-width: 600px; }
+    .page-hero p  { color: var(--muted); font-size: 0.95rem; line-height: 1.75; max-width: 500px; margin-top: 10px; }
+
+    /* sticky tab bar */
+    .tab-bar {
+      position: sticky; top: var(--nav-h); z-index: 100;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-inner {
+      max-width: 1160px; margin: 0 auto; padding: 0 24px;
+      display: flex; gap: 2px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px;
+    }
+    .tab-btn {
+      display: flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 7px;
+      font-size: 0.82rem; font-weight: 500;
+      cursor: pointer; border: none; background: transparent;
+      color: var(--muted); white-space: nowrap;
+      transition: color 0.18s, background 0.18s; font-family: inherit;
+    }
+    .tab-btn svg { width: 14px; height: 14px; }
+    .tab-btn:hover  { color: var(--text); background: #111; }
+    .tab-btn.active { color: var(--text); background: var(--card); border: 1px solid var(--border2); }
+
+    /* feature section */
+    .feat-section {
+      padding: 80px 0; border-bottom: 1px solid var(--border);
+    }
+    .feat-section:last-of-type { border-bottom: none; }
+
+    .feat-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: start;
+    }
+    .feat-row.flip { direction: rtl; }
+    .feat-row.flip > * { direction: ltr; }
+
+    .feat-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem; font-weight: 600; padding: 4px 10px;
+      border-radius: 6px; margin-bottom: 18px;
+    }
+    .feat-tag svg { width: 12px; height: 12px; }
+    .feat-content h2 {
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem); margin-bottom: 12px;
+    }
+    .feat-content > p { color: var(--muted); font-size: 0.9rem; line-height: 1.75; margin-bottom: 22px; }
+
+    .feat-checklist { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .feat-checklist li {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-size: 0.85rem; line-height: 1.55;
+    }
+    .feat-checklist li .fc-icon {
+      width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .feat-checklist li .fc-icon svg { width: 9px; height: 9px; }
+    .feat-checklist li span { color: var(--muted); }
+    .feat-checklist li span strong { color: var(--text); font-weight: 500; }
+
+    /* ── Finance mockup ── */
+    .fin-summary {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 14px;
+    }
+    .fin-summary .fs-label { font-size: 0.68rem; color: var(--muted); margin-bottom: 3px; }
+    .fin-summary .fs-val {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem;
+      font-weight: 700; color: var(--green);
+    }
+    .fin-trend {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 0.7rem; color: var(--green);
+      background: rgba(74,222,128,0.08); padding: 3px 8px; border-radius: 5px;
+    }
+    .fin-trend svg { width: 11px; height: 11px; }
+    .chart { height: 44px; display: flex; align-items: flex-end; gap: 3px; margin-bottom: 14px; }
+    .bar  { flex: 1; border-radius: 2px 2px 0 0; background: var(--border2); min-height: 6px; }
+    .bar-hi  { background: var(--green); opacity: 0.55; }
+    .bar-med { background: var(--green); opacity: 0.28; }
+
+    /* ── Habit mockup ── */
+    .streak-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+    .streak-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .streak-icon svg { width: 18px; height: 18px; }
+    .streak-header h4 { font-size: 0.9rem; font-weight: 600; }
+    .streak-header p  { font-size: 0.72rem; color: var(--muted); }
+
+    .heatmap { display: grid; grid-template-columns: repeat(14, 1fr); gap: 3px; margin-bottom: 14px; }
+    .hm { height: 9px; border-radius: 2px; background: var(--border2); }
+    .hm.on  { background: var(--purple); opacity: 0.75; }
+    .hm.mid { background: var(--purple); opacity: 0.38; }
+
+    /* ── Inventory mockup ── */
+    .inv-section-label {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.68rem; color: var(--muted); text-transform: uppercase;
+      letter-spacing: 0.06em; margin: 12px 0 7px;
+    }
+    .inv-section-label:first-child { margin-top: 0; }
+    .inv-section-label svg { width: 11px; height: 11px; }
+
+    /* ── Lumi mockup ── */
+    .lumi-hdr {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+    .lumi-av {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(244,114,182,0.1);
+      border: 1px solid rgba(244,114,182,0.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lumi-av svg { width: 16px; height: 16px; color: var(--pink); }
+    .lumi-hdr h4 { font-size: 0.875rem; font-weight: 600; }
+    .lumi-status {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.7rem; color: var(--pink);
+    }
+    .chat-area { display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
+    .cb {
+      padding: 8px 11px; border-radius: 9px; font-size: 0.78rem; max-width: 86%; line-height: 1.5;
+    }
+    .cb-user { background: var(--card2); border: 1px solid var(--border2); align-self: flex-end; border-bottom-right-radius: 3px; }
+    .cb-ai   { background: rgba(244,114,182,0.07); border: 1px solid rgba(244,114,182,0.14); align-self: flex-start; border-bottom-left-radius: 3px; }
+    .cb-sender { font-size: 0.66rem; color: var(--pink); margin-bottom: 3px; }
+    .journal-pill {
+      display: flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border2); border-radius: 8px;
+      padding: 8px 11px; font-size: 0.76rem; color: var(--muted); margin-bottom: 10px;
+    }
+    .journal-pill svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .journal-pill a { color: var(--pink); font-weight: 600; margin-left: auto; text-decoration: none; }
+    .mood-row { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    /* privacy section */
+    .privacy-section {
+      padding: 72px 0;
+      background: var(--surface); border-top: 1px solid var(--border);
+    }
+    .priv-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .priv-row h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); margin-top: 10px; margin-bottom: 14px; }
+    .priv-row p { color: var(--muted); font-size: 0.9rem; line-height: 1.75; }
+    .priv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .priv-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px;
+    }
+    .priv-card .pc-ico { margin-bottom: 8px; color: var(--muted); }
+    .priv-card .pc-ico svg { width: 18px; height: 18px; }
+    .priv-card h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+    .priv-card p  { font-size: 0.76rem; color: var(--muted); line-height: 1.5; }
+
+    @media (max-width: 860px) {
+      .feat-row { grid-template-columns: 1fr; gap: 32px; }
+      .feat-row.flip { direction: ltr; }
+      .priv-row { grid-template-columns: 1fr; gap: 32px; }
+      .priv-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .priv-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="nav-item" href="index.html">Home</a>
+      <a class="nav-item active" href="features.html">Fitur</a>
+      <a class="nav-item" href="about.html">Tentang</a>
+    </div>
+    <a class="nav-logo" href="index.html">HiON</a>
+    <div class="nav-right">
+      <span class="live-badge"><span class="live-dot"></span>Coming Soon</span>
+      <a class="nav-cta" href="waitlist.html">
+        Early Access <i data-lucide="arrow-right" style="width:13px;height:13px"></i>
+      </a>
+      <button class="nav-menu-btn" id="menu-btn" aria-label="Menu">
+        <i data-lucide="menu" style="width:20px;height:20px"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html"><i data-lucide="home" style="width:16px;height:16px"></i> Home</a>
+  <a href="features.html"><i data-lucide="layout-grid" style="width:16px;height:16px"></i> Fitur</a>
+  <a href="about.html"><i data-lucide="info" style="width:16px;height:16px"></i> Tentang</a>
+  <a href="waitlist.html"><i data-lucide="mail" style="width:16px;height:16px"></i> Early Access</a>
+</div>
+
+<div style="padding-top: var(--nav-h)">
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Fitur HiON</p>
+    <h1 class="display">Semua yang kamu butuhkan, terhubung jadi satu.</h1>
+    <p>Empat modul yang dirancang saling melengkapi — bukan aplikasi terpisah, tapi satu ekosistem yang paham konteks hidupmu.</p>
+  </div>
+</section>
+
+<!-- STICKY TABS -->
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="scrollTo('finance',this)">
+      <i data-lucide="wallet"></i> Finance
+    </button>
+    <button class="tab-btn" onclick="scrollTo('habit',this)">
+      <i data-lucide="activity"></i> Habit
+    </button>
+    <button class="tab-btn" onclick="scrollTo('inventory',this)">
+      <i data-lucide="package"></i> Life Inventory
+    </button>
+    <button class="tab-btn" onclick="scrollTo('lumi',this)">
+      <i data-lucide="message-circle"></i> Lumi
+    </button>
+    <button class="tab-btn" onclick="scrollTo('privacy',this)">
+      <i data-lucide="shield"></i> Privasi
+    </button>
+  </div>
+</div>
+
+<!-- ════ FINANCE ════ -->
+<section class="feat-section" id="finance">
+  <div class="container">
+    <div class="feat-row reveal">
+      <div class="feat-content">
+        <span class="feat-tag badge-green">
+          <i data-lucide="wallet"></i> Finance
+        </span>
+        <h2 class="heading">Kendali penuh atas keuangan personalmu</h2>
+        <p>Dari gaji masuk sampai utang yang perlu dilunasi — HiON Finance memetakan semua arus uangmu dan memberi insight yang actionable setiap bulan.</p>
+        <ul class="feat-checklist">
+          <li>
+            <span class="fc-icon ib-green"><i data-lucide="check"></i></span>
+            <span><strong>Income tracker</strong> — catat gaji, freelance, passive income</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-green"><i data-lucide="check"></i></span>
+            <span><strong>Expense breakdown</strong> — kategorisasi pengeluaran otomatis via AI</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-green"><i data-lucide="check"></i></span>
+            <span><strong>Savings goals</strong> — visual progress menuju target tabungan</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-green"><i data-lucide="check"></i></span>
+            <span><strong>Debt manager</strong> — cicilan, pinjaman, dan jadwal lunas</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-green"><i data-lucide="check"></i></span>
+            <span><strong>Monthly insight</strong> — "Bulan ini kamu boros di hiburan 34%"</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-green"><i data-lucide="check"></i></span>
+            <span><strong>Budget alert</strong> — notifikasi saat mendekati batas bujet</span>
+          </li>
+        </ul>
+      </div>
+      <div class="mock-panel">
+        <div class="mock-topbar">
+          <span class="wdot" style="background:#222"></span>
+          <span class="wdot" style="background:#222"></span>
+          <span class="wdot" style="background:#222"></span>
+          <span class="wtitle">Finance · Juni 2026</span>
+        </div>
+        <div class="mock-body">
+          <div class="fin-summary">
+            <div>
+              <div class="fs-label">Net Balance</div>
+              <div class="fs-val">Rp 4.250.000</div>
+            </div>
+            <div class="fin-trend">
+              <i data-lucide="trending-up"></i> +12%
+            </div>
+          </div>
+          <div class="chart">
+            <div class="bar bar-med" style="height:28%"></div>
+            <div class="bar" style="height:18%"></div>
+            <div class="bar bar-med" style="height:46%"></div>
+            <div class="bar bar-hi" style="height:68%"></div>
+            <div class="bar bar-med" style="height:38%"></div>
+            <div class="bar bar-hi" style="height:88%"></div>
+            <div class="bar bar-med" style="height:54%"></div>
+            <div class="bar" style="height:14%"></div>
+            <div class="bar bar-hi" style="height:76%"></div>
+            <div class="bar bar-med" style="height:50%"></div>
+            <div class="bar" style="height:22%"></div>
+            <div class="bar bar-hi" style="height:100%"></div>
+          </div>
+          <div class="row-list">
+            <div class="row-list-item">
+              <span class="icon-box ib-green"><i data-lucide="briefcase"></i></span>
+              <span class="rl-name">Gaji</span>
+              <span class="rl-value rl-pos">+Rp 8.500.000</span>
+            </div>
+            <div class="row-list-item">
+              <span class="icon-box ib-muted"><i data-lucide="shopping-cart"></i></span>
+              <span class="rl-name">Belanja & Makan</span>
+              <span class="rl-value rl-neg">−Rp 2.100.000</span>
+            </div>
+            <div class="row-list-item">
+              <span class="icon-box ib-muted"><i data-lucide="home"></i></span>
+              <span class="rl-name">Kos & Tagihan</span>
+              <span class="rl-value rl-neg">−Rp 1.500.000</span>
+            </div>
+            <div class="row-list-item">
+              <span class="icon-box ib-muted"><i data-lucide="credit-card"></i></span>
+              <span class="rl-name">Cicilan HP</span>
+              <span class="rl-value rl-neg">−Rp 650.000</span>
+            </div>
+          </div>
+          <div class="prog-row">
+            <span style="display:flex;align-items:center;gap:5px">
+              <i data-lucide="target" style="width:11px;height:11px;color:var(--purple)"></i>
+              Dana Liburan Bali
+            </span>
+            <span style="color:var(--purple)">22%</span>
+          </div>
+          <div class="prog-track">
+            <div class="prog-fill" style="width:22%;background:var(--purple)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ HABIT ════ -->
+<section class="feat-section" id="habit">
+  <div class="container">
+    <div class="feat-row flip reveal">
+      <div class="feat-content">
+        <span class="feat-tag badge-purple">
+          <i data-lucide="activity"></i> Habit
+        </span>
+        <h2 class="heading">Kebiasaan baik tumbuh, kebiasaan buruk terdeteksi</h2>
+        <p>HiON Habit bukan sekadar checklist. Sistem ini memahami polamu — kapan semangat, kapan burnout, dan apa yang mempengaruhi konsistensimu.</p>
+        <ul class="feat-checklist">
+          <li>
+            <span class="fc-icon ib-purple"><i data-lucide="check"></i></span>
+            <span><strong>Habit tracker</strong> — olahraga, tidur, makan teratur, minum air</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-purple"><i data-lucide="check"></i></span>
+            <span><strong>Menstrual cycle</strong> — pantau siklus, mood & gejala harian</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-purple"><i data-lucide="check"></i></span>
+            <span><strong>Bad habit awareness</strong> — deteksi kebiasaan buruk & malas</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-purple"><i data-lucide="check"></i></span>
+            <span><strong>Streak system</strong> — motivasi visual konsistensi harian</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-purple"><i data-lucide="check"></i></span>
+            <span><strong>Pattern insight</strong> — "Kamu produktif di Selasa–Kamis"</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-purple"><i data-lucide="check"></i></span>
+            <span><strong>Smart reminder</strong> — pengingat yang menyesuaikan ritme hidupmu</span>
+          </li>
+        </ul>
+      </div>
+      <div class="mock-panel">
+        <div class="mock-topbar">
+          <span class="wdot" style="background:#222"></span>
+          <span class="wdot" style="background:#222"></span>
+          <span class="wdot" style="background:#222"></span>
+          <span class="wtitle">Habit · Minggu ini</span>
+        </div>
+        <div class="mock-body">
+          <div class="streak-header">
+            <div class="streak-icon ib-purple">
+              <i data-lucide="flame"></i>
+            </div>
+            <div>
+              <h4>14 hari streak olahraga</h4>
+              <p>Terbaik bulan ini · Pertahankan!</p>
+            </div>
+          </div>
+          <p style="font-size:0.67rem;color:var(--muted2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px">Aktivitas 2 minggu terakhir</p>
+          <div class="heatmap">
+            <div class="hm on"></div><div class="hm mid"></div><div class="hm on"></div><div class="hm"></div>
+            <div class="hm on"></div><div class="hm on"></div><div class="hm mid"></div><div class="hm on"></div>
+            <div class="hm on"></div><div class="hm"></div><div class="hm mid"></div><div class="hm on"></div>
+            <div class="hm on"></div><div class="hm on"></div>
+          </div>
+          <div class="row-list">
+            <div class="row-list-item">
+              <span class="icon-box ib-purple"><i data-lucide="dumbbell"></i></span>
+              <span class="rl-name">Olahraga 30 menit</span>
+              <span style="font-size:0.7rem;color:var(--purple);margin-right:4px">14 hari</span>
+              <span class="badge badge-purple" style="padding:2px 6px;font-size:0.65rem">✓</span>
+            </div>
+            <div class="row-list-item">
+              <span class="icon-box ib-muted"><i data-lucide="moon"></i></span>
+              <span class="rl-name">Tidur 7–8 jam</span>
+              <span style="font-size:0.7rem;color:var(--muted);margin-right:4px">6 hari</span>
+              <span class="badge badge-muted" style="padding:2px 6px;font-size:0.65rem">✓</span>
+            </div>
+            <div class="row-list-item">
+              <span class="icon-box ib-muted"><i data-lucide="utensils"></i></span>
+              <span class="rl-name">Makan teratur</span>
+              <span style="font-size:0.7rem;color:var(--muted);margin-right:4px">11 hari</span>
+              <span class="badge badge-muted" style="padding:2px 6px;font-size:0.65rem">✓</span>
+            </div>
+            <div class="row-list-item">
+              <span class="icon-box ib-pink"><i data-lucide="heart"></i></span>
+              <span class="rl-name">Siklus menstruasi</span>
+              <span style="font-size:0.7rem;color:var(--pink);margin-right:4px">Hari ke-18</span>
+              <span class="badge badge-pink" style="padding:2px 6px;font-size:0.65rem">♡</span>
+            </div>
+            <div class="row-list-item">
+              <span class="icon-box ib-red"><i data-lucide="alert-triangle"></i></span>
+              <span class="rl-name">Bersih kamar</span>
+              <span style="font-size:0.7rem;color:var(--red);margin-right:4px">4 hari skip</span>
+              <span class="badge badge-red" style="padding:2px 6px;font-size:0.65rem">!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ INVENTORY ════ -->
+<section class="feat-section" id="inventory">
+  <div class="container">
+    <div class="feat-row reveal">
+      <div class="feat-content">
+        <span class="feat-tag badge-cyan">
+          <i data-lucide="package"></i> Life Inventory
+        </span>
+        <h2 class="heading">Rumah dan hidupmu yang tertata rapi</h2>
+        <p>Hal-hal kecil yang sering dilupakan tapi bikin stres kalau tidak diurus. HiON Life Inventory jadi asisten rumah tangga cerdasmu.</p>
+        <ul class="feat-checklist">
+          <li>
+            <span class="fc-icon ib-cyan"><i data-lucide="check"></i></span>
+            <span><strong>Restock list</strong> — sabun, shampoo, makanan, obat — terpantau</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-cyan"><i data-lucide="check"></i></span>
+            <span><strong>Cleaning schedule</strong> — kamar mandi, lantai, dapur + pengingat</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-cyan"><i data-lucide="check"></i></span>
+            <span><strong>AI prediction</strong> — "Sabunmu kira-kira habis minggu depan"</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-cyan"><i data-lucide="check"></i></span>
+            <span><strong>Quick log</strong> — tambah item dalam 2 detik, voice atau ketik</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-cyan"><i data-lucide="check"></i></span>
+            <span><strong>Kategori fleksibel</strong> — sesuaikan dengan gaya hidupmu</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-cyan"><i data-lucide="check"></i></span>
+            <span><strong>Smart notif</strong> — tidak mengganggu, muncul saat benar-benar perlu</span>
+          </li>
+        </ul>
+      </div>
+      <div class="mock-panel">
+        <div class="mock-topbar">
+          <span class="wdot" style="background:#222"></span>
+          <span class="wdot" style="background:#222"></span>
+          <span class="wdot" style="background:#222"></span>
+          <span class="wtitle">Life Inventory</span>
+        </div>
+        <div class="mock-body">
+          <div class="inv-section-label">
+            <i data-lucide="alert-circle" style="color:var(--red)"></i>
+            Perlu segera
+          </div>
+          <div class="row-list" style="margin-bottom:10px">
+            <div class="row-list-item">
+              <span class="icon-box ib-muted"><i data-lucide="droplets"></i></span>
+              <span class="rl-name">Sabun mandi</span>
+              <span class="badge badge-red">Habis</span>
+            </div>
+            <div class="row-list-item">
+              <span class="icon-box ib-muted"><i data-lucide="wind"></i></span>
+              <span class="rl-name">Shampoo</span>
+              <span class="badge badge-red">Hampir habis</span>
+            </div>
+          </div>
+          <div class="inv-section-label">
+            <i data-lucide="clock" style="color:var(--yellow)"></i>
+            Minggu ini
+          </div>
+          <div class="row-list" style="margin-bottom:10px">
+            <div class="row-list-item">
+              <span class="icon-box ib-muted"><i data-lucide="smile"></i></span>
+              <span class="rl-name">Sikat gigi</span>
+              <span class="badge badge-yellow">Ganti minggu ini</span>
+            </div>
+            <div class="row-list-item">
+              <span class="icon-box ib-muted"><i data-lucide="pill"></i></span>
+              <span class="rl-name">Vitamin C</span>
+              <span class="badge badge-yellow">5 butir sisa</span>
+            </div>
+          </div>
+          <div class="inv-section-label">
+            <i data-lucide="calendar" style="color:var(--muted)"></i>
+            Jadwal Rumah
+          </div>
+          <div class="row-list">
+            <div class="row-list-item">
+              <span class="icon-box ib-muted"><i data-lucide="sparkles"></i></span>
+              <span class="rl-name">Bersihkan kamar mandi</span>
+              <span class="badge badge-yellow">Besok</span>
+            </div>
+            <div class="row-list-item">
+              <span class="icon-box ib-muted"><i data-lucide="wind"></i></span>
+              <span class="rl-name">Vacuuming lantai</span>
+              <span class="badge badge-green">3 hari lagi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ LUMI ════ -->
+<section class="feat-section" id="lumi">
+  <div class="container">
+    <div class="feat-row flip reveal">
+      <div class="feat-content">
+        <span class="feat-tag badge-pink">
+          <i data-lucide="message-circle"></i> Lumi · Mental Companion
+        </span>
+        <h2 class="heading">Teman bicara yang selalu ada, tanpa judgment</h2>
+        <p>Lumi bukan terapis profesional — tapi dia mendengarkan, merespons dengan empati, dan merangkum percakapanmu jadi jurnal yang bermakna. Kamu cerita, Lumi catat dan pahami.</p>
+        <ul class="feat-checklist">
+          <li>
+            <span class="fc-icon ib-pink"><i data-lucide="check"></i></span>
+            <span><strong>Empathy chat</strong> — AI psikolog yang responsif & non-judgemental</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-pink"><i data-lucide="check"></i></span>
+            <span><strong>Weekly journal</strong> — resume otomatis dari percakapan minggu ini</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-pink"><i data-lucide="check"></i></span>
+            <span><strong>Mood badge</strong> — burnout, malas, sedih, overthinking, happy</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-pink"><i data-lucide="check"></i></span>
+            <span><strong>Emotional pattern</strong> — "Kamu lebih anxious di awal minggu"</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-pink"><i data-lucide="check"></i></span>
+            <span><strong>Private mode</strong> — percakapan 100% privat, hanya kamu bisa baca</span>
+          </li>
+          <li>
+            <span class="fc-icon ib-pink"><i data-lucide="check"></i></span>
+            <span><strong>Cross-module insight</strong> — Lumi paham kondisi finance & habit-mu</span>
+          </li>
+        </ul>
+      </div>
+      <div class="mock-panel">
+        <div class="mock-topbar">
+          <span class="wdot" style="background:#222"></span>
+          <span class="wdot" style="background:#222"></span>
+          <span class="wdot" style="background:#222"></span>
+          <span class="wtitle">Lumi</span>
+        </div>
+        <div class="mock-body">
+          <div class="lumi-hdr">
+            <div class="lumi-av"><i data-lucide="sparkles"></i></div>
+            <div>
+              <h4>Lumi</h4>
+              <p class="lumi-status">
+                <span class="live-dot"></span>&nbsp;Online · Mental Companion
+              </p>
+            </div>
+          </div>
+          <div class="chat-area">
+            <div>
+              <div class="cb-sender">Lumi</div>
+              <div class="cb cb-ai">Hei! Gimana hari ini? Ada yang mau diceritain?</div>
+            </div>
+            <div class="cb cb-user">Aku ngerasa capek banget, kayak semua terasa berat...</div>
+            <div>
+              <div class="cb-sender">Lumi</div>
+              <div class="cb cb-ai">Makasih udah cerita 💜 Rasa itu valid. Mau cerita lebih lanjut? Apa yang paling berat hari ini?</div>
+            </div>
+          </div>
+          <div class="journal-pill">
+            <i data-lucide="book-open"></i>
+            Resume jurnal minggu ini siap
+            <a href="#">Baca →</a>
+          </div>
+          <p style="font-size:0.67rem;color:var(--muted2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Badge mood minggu ini</p>
+          <div class="mood-row">
+            <span class="badge badge-red"><i data-lucide="battery-low" style="width:10px;height:10px"></i> Burnout</span>
+            <span class="badge badge-purple"><i data-lucide="zap-off" style="width:10px;height:10px"></i> Low Energy</span>
+            <span class="badge badge-yellow"><i data-lucide="cloud" style="width:10px;height:10px"></i> Overthinking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PRIVACY ════ -->
+<section class="privacy-section" id="privacy">
+  <div class="container">
+    <div class="priv-row reveal">
+      <div>
+        <p class="eyebrow">Privasi</p>
+        <h2 class="heading">Data hidupmu bukan produk kami</h2>
+        <p>HiON dibangun dengan prinsip privacy-first dari hari pertama. Kamu mempercayai kami dengan data paling personal dalam hidupmu — kami tidak akan mengkhianati itu.</p>
+      </div>
+      <div class="priv-grid">
+        <div class="priv-card">
+          <div class="pc-ico"><i data-lucide="lock"></i></div>
+          <h4>End-to-End Encrypted</h4>
+          <p>Bahkan kami tidak bisa membaca datamu.</p>
+        </div>
+        <div class="priv-card">
+          <div class="pc-ico"><i data-lucide="eye-off"></i></div>
+          <h4>No Ads, No Selling</h4>
+          <p>Data kamu tidak dijual ke siapapun, selamanya.</p>
+        </div>
+        <div class="priv-card">
+          <div class="pc-ico"><i data-lucide="download"></i></div>
+          <h4>Data Portability</h4>
+          <p>Export & hapus datamu kapan saja, tanpa syarat.</p>
+        </div>
+        <div class="priv-card">
+          <div class="pc-ico"><i data-lucide="hard-drive"></i></div>
+          <h4>Local-first Option</h4>
+          <p>Mode lokal: data tidak keluar dari perangkatmu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /padding-top -->
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="fb-logo" href="index.html">HiON</a>
+        <p>Personal AI ecosystem yang selalu ON — mengenal hidupmu, membantu kamu berkembang, dan menjaga privasimu.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+          <a href="#" aria-label="Email"><i data-lucide="mail"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Produk</h4>
+        <ul>
+          <li><a href="features.html"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Fitur</a></li>
+          <li><a href="about.html#roadmap"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Roadmap</a></li>
+          <li><a href="waitlist.html"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Early Access</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Changelog</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Harga</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Perusahaan</h4>
+        <ul>
+          <li><a href="about.html"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Tentang Kami</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Blog</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Karir</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Hubungi Kami</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Kebijakan Privasi</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Syarat & Ketentuan</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Cookie Policy</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-newsletter">
+      <div class="fn-text">
+        <h4>Tetap update perkembangan HiON</h4>
+        <p>Dapatkan info terbaru langsung ke email kamu. Tidak ada spam.</p>
+      </div>
+      <form class="fn-form" id="fn-form">
+        <input type="email" placeholder="email@kamu.com" required />
+        <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+      </form>
+    </div>
+    <div class="footer-bottom">
+      <span class="fb-copy">© 2026 HiON · Dibuat dengan ♥ di Indonesia</span>
+      <div class="fb-links">
+        <a href="#">Privasi</a>
+        <a href="#">Syarat</a>
+        <a href="#">Cookie</a>
+      </div>
+      <span class="fb-status"><span class="fb-status-dot"></span> All systems operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  function scrollTo(id, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 110;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }
+</script>
+</body>
+</html>

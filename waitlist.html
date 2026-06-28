@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Early Access — HiON</title>
+  <meta name="description" content="Daftar waitlist HiON dan dapatkan early access, harga founding member, serta privilege ikut feedback loop pengembangan." />
+  <link rel="canonical" href="https://hion.app/waitlist" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://hion.app/waitlist" />
+  <meta property="og:title"       content="Early Access — HiON Waitlist" />
+  <meta property="og:description" content="Daftar waitlist HiON. Dapatkan early access, harga founding member, dan hak feedback langsung ke tim pengembang." />
+  <meta property="og:image"       content="https://hion.app/assets/images/og.png" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Early Access — HiON Waitlist" />
+  <meta name="twitter:description" content="Daftar waitlist HiON. Dapatkan early access, harga founding member, dan hak feedback langsung ke tim pengembang." />
+  <meta name="twitter:image"       content="https://hion.app/assets/images/og.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .wl-layout {
+      min-height: calc(100vh - 60px);
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+
+    /* left panel */
+    .wl-left {
+      padding: 72px 56px 72px 0;
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .wl-left h1 { font-size: clamp(2rem,4vw,3rem); margin-top: 12px; line-height: 1.1; }
+    .wl-left > p { color: var(--muted); font-size: 0.9rem; line-height: 1.75; margin-top: 14px; max-width: 420px; }
+
+    .perks { margin-top: 44px; display: flex; flex-direction: column; gap: 0; }
+    .perk {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 18px 0; border-bottom: 1px solid var(--border);
+    }
+    .perk:first-child { border-top: 1px solid var(--border); }
+    .perk-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+      border: 1px solid var(--border2);
+    }
+    .perk-icon svg { width: 16px; height: 16px; color: var(--muted); }
+    .perk-text h4 { font-size: 0.875rem; font-weight: 600; margin-bottom: 3px; }
+    .perk-text p  { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    .social-proof {
+      margin-top: 36px; display: flex; align-items: center; gap: 12px;
+    }
+    .sp-avatars { display: flex; }
+    .sp-av {
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 2px solid var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.62rem; font-weight: 700;
+      margin-right: -8px;
+    }
+    .sp-text { font-size: 0.78rem; color: var(--muted); margin-left: 16px; }
+    .sp-text strong { color: var(--text); }
+
+    /* right panel */
+    .wl-right {
+      padding: 72px 0 72px 56px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .wl-form-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 32px;
+    }
+    .wl-form-card h3 {
+      font-size: 0.95rem; font-weight: 600; margin-bottom: 6px;
+    }
+    .wl-form-card > p {
+      font-size: 0.8rem; color: var(--muted); margin-bottom: 24px;
+    }
+
+    .wl-submit {
+      width: 100%; background: var(--text); color: var(--bg);
+      border: none; padding: 12px; border-radius: 8px;
+      font-size: 0.875rem; font-weight: 700; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 4px; transition: opacity 0.18s;
+      font-family: inherit;
+    }
+    .wl-submit:hover { opacity: 0.85; }
+    .wl-submit svg { width: 15px; height: 15px; }
+    .wl-note {
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      font-size: 0.72rem; color: var(--muted2); margin-top: 12px;
+    }
+    .wl-note svg { width: 12px; height: 12px; }
+
+    /* success state */
+    .success-state {
+      display: none; text-align: center; padding: 20px 0;
+    }
+    .success-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .success-icon svg { width: 24px; height: 24px; color: var(--green); }
+    .success-state h4 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+    .success-state p  { font-size: 0.85rem; color: var(--muted); }
+
+    /* position count */
+    .pos-counter {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .pos-counter .pos-bar {
+      flex: 1; height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden;
+    }
+    .pos-counter .pos-fill {
+      height: 100%; background: var(--green); border-radius: 2px; width: 34%;
+    }
+    .pos-counter strong { color: var(--green); white-space: nowrap; }
+
+    @media (max-width: 860px) {
+      .wl-layout { grid-template-columns: 1fr; }
+      .wl-left { padding: 56px 0 40px; border-right: none; border-bottom: 1px solid var(--border); }
+      .wl-right { padding: 40px 0 56px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="nav-item" href="index.html">Home</a>
+      <a class="nav-item" href="features.html">Fitur</a>
+      <a class="nav-item" href="about.html">Tentang</a>
+    </div>
+    <a class="nav-logo" href="index.html">HiON</a>
+    <div class="nav-right">
+      <span class="live-badge"><span class="live-dot"></span>Waitlist Terbuka</span>
+      <button class="nav-menu-btn" id="menu-btn" aria-label="Menu">
+        <i data-lucide="menu" style="width:20px;height:20px"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html"><i data-lucide="home" style="width:16px;height:16px"></i> Home</a>
+  <a href="features.html"><i data-lucide="layout-grid" style="width:16px;height:16px"></i> Fitur</a>
+  <a href="about.html"><i data-lucide="info" style="width:16px;height:16px"></i> Tentang</a>
+</div>
+
+<div style="padding-top: var(--nav-h)">
+<div class="container">
+  <div class="wl-layout">
+
+    <!-- LEFT: pitch -->
+    <div class="wl-left">
+      <span class="badge badge-green" style="width:fit-content">
+        <i data-lucide="zap" style="width:10px;height:10px"></i>
+        Waitlist terbuka
+      </span>
+      <h1 class="display">Bergabung lebih awal, nikmati lebih banyak</h1>
+      <p>Founding member mendapat early access, harga spesial yang terkunci seumur hidup, dan hak langsung mempengaruhi arah pengembangan HiON.</p>
+
+      <div class="perks">
+        <div class="perk">
+          <div class="perk-icon"><i data-lucide="zap"></i></div>
+          <div class="perk-text">
+            <h4>Early Access</h4>
+            <p>Kamu yang pertama mencoba sebelum public launch di Q4 2026.</p>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon"><i data-lucide="tag"></i></div>
+          <div class="perk-text">
+            <h4>Founding Member Price</h4>
+            <p>Harga spesial yang terkunci seumur hidup — tidak naik meski harga publik berubah.</p>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon"><i data-lucide="message-square"></i></div>
+          <div class="perk-text">
+            <h4>Feedback Privilege</h4>
+            <p>Akses langsung ke tim — suaramu menentukan fitur apa yang dibangun selanjutnya.</p>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon"><i data-lucide="users"></i></div>
+          <div class="perk-text">
+            <h4>Komunitas Eksklusif</h4>
+            <p>Bergabung dengan komunitas beta tester dan founding members HiON.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-proof">
+        <div class="sp-avatars">
+          <span class="sp-av" style="background:rgba(74,222,128,0.15);color:var(--green)">AR</span>
+          <span class="sp-av" style="background:rgba(244,114,182,0.15);color:var(--pink)">DM</span>
+          <span class="sp-av" style="background:rgba(167,139,250,0.15);color:var(--purple)">FR</span>
+          <span class="sp-av" style="background:rgba(34,211,238,0.15);color:var(--cyan)">NS</span>
+        </div>
+        <span class="sp-text"><strong>347+ orang</strong> sudah terdaftar</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: form -->
+    <div class="wl-right">
+      <div class="wl-form-card">
+        <h3>Daftar Early Access</h3>
+        <p>Hanya butuh 1 menit. Tidak ada kartu kredit.</p>
+
+        <div class="pos-counter">
+          <span>Slot tersisa</span>
+          <div class="pos-bar"><div class="pos-fill"></div></div>
+          <strong>153 / 500</strong>
+        </div>
+
+        <div id="form-content">
+          <div class="form-field">
+            <label>Nama lengkap</label>
+            <input type="text" id="wl-name" placeholder="Nama kamu" />
+          </div>
+          <div class="form-field">
+            <label>Email <span style="color:var(--red)">*</span></label>
+            <input type="email" id="wl-email" placeholder="email@kamu.com" />
+          </div>
+          <div class="form-field">
+            <label>Modul yang paling kamu tunggu</label>
+            <select id="wl-module">
+              <option value="" disabled selected>Pilih modul</option>
+              <option value="finance">Finance — kelola keuangan</option>
+              <option value="habit">Habit — bangun kebiasaan</option>
+              <option value="inventory">Life Inventory — atur rumah</option>
+              <option value="lumi">Lumi — mental companion</option>
+              <option value="all">Semua modul</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Perangkat utama kamu</label>
+            <select id="wl-device">
+              <option value="" disabled selected>Pilih perangkat</option>
+              <option value="mobile">Mobile (Android/iOS)</option>
+              <option value="web">Web browser</option>
+              <option value="both">Keduanya</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Apa tantangan terbesar dalam hidupmu saat ini? <span style="color:var(--muted2)">(opsional)</span></label>
+            <textarea id="wl-challenge" placeholder="Cerita sedikit..."></textarea>
+          </div>
+          <button class="wl-submit" onclick="handleSubmit()">
+            <i data-lucide="arrow-right"></i>
+            Daftarkan Saya
+          </button>
+          <div class="wl-note">
+            <i data-lucide="lock"></i>
+            Data kamu aman · Tidak ada spam · Unsubscribe kapan saja
+          </div>
+        </div>
+
+        <div class="success-state" id="success-state">
+          <div class="success-icon">
+            <i data-lucide="check"></i>
+          </div>
+          <h4>Kamu sudah terdaftar!</h4>
+          <p>Kami akan mengirim email konfirmasi segera. Nantikan kabar early access dari kami.</p>
+          <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border)">
+            <p style="font-size:0.78rem;color:var(--muted);margin-bottom:12px">Sambil menunggu, bagikan ke teman:</p>
+            <div style="display:flex;gap:8px;justify-content:center">
+              <a href="#" class="btn btn-outline btn-sm">
+                <i data-lucide="twitter" style="width:13px;height:13px"></i> Twitter
+              </a>
+              <a href="#" class="btn btn-outline btn-sm">
+                <i data-lucide="link" style="width:13px;height:13px"></i> Copy link
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div><!-- /padding-top -->
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="fb-logo" href="index.html">HiON</a>
+        <p>Personal AI ecosystem yang selalu ON — mengenal hidupmu, membantu kamu berkembang, dan menjaga privasimu.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+          <a href="#" aria-label="Email"><i data-lucide="mail"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Produk</h4>
+        <ul>
+          <li><a href="features.html"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Fitur</a></li>
+          <li><a href="about.html#roadmap"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Roadmap</a></li>
+          <li><a href="waitlist.html"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Early Access</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Changelog</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Harga</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Perusahaan</h4>
+        <ul>
+          <li><a href="about.html"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Tentang Kami</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Blog</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Karir</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Hubungi Kami</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Kebijakan Privasi</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Syarat & Ketentuan</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Cookie Policy</a></li>
+          <li><a href="#"><i data-lucide="arrow-right" style="width:12px;height:12px"></i> Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-newsletter">
+      <div class="fn-text">
+        <h4>Tetap update perkembangan HiON</h4>
+        <p>Dapatkan info terbaru langsung ke email kamu. Tidak ada spam.</p>
+      </div>
+      <form class="fn-form" id="fn-form">
+        <input type="email" placeholder="email@kamu.com" required />
+        <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+      </form>
+    </div>
+    <div class="footer-bottom">
+      <span class="fb-copy">© 2026 HiON · Dibuat dengan ♥ di Indonesia</span>
+      <div class="fb-links">
+        <a href="#">Privasi</a>
+        <a href="#">Syarat</a>
+        <a href="#">Cookie</a>
+      </div>
+      <span class="fb-status"><span class="fb-status-dot"></span> All systems operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  function handleSubmit() {
+    const email = document.getElementById('wl-email').value;
+    const emailInput = document.getElementById('wl-email');
+    if (!email || !email.includes('@')) {
+      emailInput.style.borderColor = 'var(--red)';
+      emailInput.focus();
+      setTimeout(() => { emailInput.style.borderColor = ''; }, 2000);
+      return;
+    }
+    document.getElementById('form-content').style.display = 'none';
+    const s = document.getElementById('success-state');
+    s.style.display = 'block';
+    lucide.createIcons();
+  }
+</script>
+</body>
+</html>
